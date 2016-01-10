@@ -31,21 +31,19 @@ class Ingredient
     /**
      * @var int
      *
-     * @ORM\Column(name="Amount", type="integer")
+     * @ORM\Column(name="Amount", type="integer", unique=true)
      */
     private $amount;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="CategoryID", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $categoryID;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="AmountID", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Amount")
+     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id")
      */
     private $amountID;
 
