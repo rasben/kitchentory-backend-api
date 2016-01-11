@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * IngredientName
  *
  * @ORM\Table(name="ingredient_name")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientNameRepository")
+ * @UniqueEntity("name")
  */
 class IngredientName
 {
@@ -24,10 +26,15 @@ class IngredientName
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255)
+     * @ORM\Column(name="Name", type="string", length=255, unique=true)
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Ingredient")
+     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     */
+    private $ingredientID;
 
     /**
      * Get id
