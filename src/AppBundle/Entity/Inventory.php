@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * IngredientAlias
+ * Inventory
  *
- * @ORM\Table(name="ingredient_alias")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientAliasRepository")
+ * @ORM\Table(name="inventory")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InventoryRepository")
  */
-class IngredientAlias
+class Inventory
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class IngredientAlias
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -44,7 +44,7 @@ class IngredientAlias
      *
      * @param string $name
      *
-     * @return IngredientAlias
+     * @return Inventory
      */
     public function setName($name)
     {

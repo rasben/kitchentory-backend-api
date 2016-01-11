@@ -7,13 +7,17 @@ use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\IngredientAlias;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\RecipeAmount;
+use AppBundle\Entity\Inventory;
+use AppBundle\Entity\InventoryIngredient;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
-{
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+class DefaultController extends Controller {
     /**
      * @Route("/", name="homepage")
      */
@@ -59,6 +63,40 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
+
+    /**
+     * @Route("/example/form", name="exampleform")
+     */
+    public function newAction(Request $request) {
+        // create a inventory and give it some dummy data for this example
+        $inventory = new Inventory();
+        $inventory->setName('set a name');
+
+        $form = $this->createFormBuilder($inventory)
+            ->add('name', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create inventory'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // ... perform some action, such as saving the task to the database
+
+
+            $em = $this->getDoctrine()->getManager();
+            
+            $em->persist($inventory);
+            $em->flush();
+            
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('default/new.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
 
 
 }

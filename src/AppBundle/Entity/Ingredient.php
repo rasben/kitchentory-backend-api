@@ -22,13 +22,6 @@ class Ingredient
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Name", type="string", length=255)
-     */
-    private $name;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="Amount", type="integer", unique=true)
@@ -56,30 +49,6 @@ class Ingredient
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Ingredient
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
