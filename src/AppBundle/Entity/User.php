@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Inventory
+ * User
  *
- * @ORM\Table(name="inventory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\InventoryRepository")
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class Inventory
+class User
 {
     /**
      * @var int
@@ -24,16 +24,17 @@ class Inventory
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255)
      */
-    private $location;
+    private $password;
+
 
     /**
      * Get id
@@ -50,25 +51,11 @@ class Inventory
      *
      * @param string $name
      *
-     * @return Inventory
+     * @return User
      */
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Set location
-     *
-     * @param string $location
-     *
-     * @return Inventory
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
 
         return $this;
     }
@@ -84,13 +71,27 @@ class Inventory
     }
 
     /**
-     * Get location
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
      *
      * @return string
      */
-    public function getLocation()
+    public function getPassword()
     {
-        return $this->location;
+        return $this->password;
     }
 }
 

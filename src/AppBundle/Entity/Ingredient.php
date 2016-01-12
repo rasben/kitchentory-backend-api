@@ -24,9 +24,16 @@ class Ingredient
     /**
      * @var int
      *
-     * @ORM\Column(name="Amount", type="integer", unique=true)
+     * @ORM\Column(name="Amount", type="integer")
      */
     private $amount;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Global", type="boolean")
+     */
+    private $global;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
@@ -66,6 +73,20 @@ class Ingredient
     }
 
     /**
+     * Set global
+     *
+     * @param integer $global
+     *
+     * @return Ingredient
+     */
+    public function setGlobal($global)
+    {
+        $this->global = $global;
+
+        return $this;
+    }
+
+    /**
      * Get amount
      *
      * @return int
@@ -74,6 +95,17 @@ class Ingredient
     {
         return $this->amount;
     }
+
+    /**
+     * Get global
+     *
+     * @return int
+     */
+    public function getGlobal()
+    {
+        return $this->global;
+    }
+
 
     /**
      * Set categoryID
