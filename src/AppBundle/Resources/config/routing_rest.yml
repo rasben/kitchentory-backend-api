@@ -1,0 +1,19 @@
+kitchens :
+  type: rest
+  resource:     "AppBundle:KitchenRest"
+  name_prefix:  api_
+
+users :
+  type: rest
+  resource:     "AppBundle:UserRest"
+  name_prefix:  api_
+
+ingredients :
+  type: rest
+  resource:     "AppBundle:IngredientRest"
+  name_prefix:  api_
+
+languages :
+  type: rest
+  resource:     "AppBundle:LanguageRest"
+  name_prefix:  api_

@@ -8,9 +8,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * IngredientName
  *
- * @ORM\Table(name="ingredient_name")
+ * @ORM\Table(name="ingredient_name", uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="uq_name_language", columns={"name", "language_id"})})
+ *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientNameRepository")
- * @UniqueEntity("name")
  */
 class IngredientName
 {
@@ -26,7 +27,7 @@ class IngredientName
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -35,6 +36,19 @@ class IngredientName
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      */
     private $ingredientID;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Language")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     */
+    private $languageID;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="master", type="boolean")
+     */
+    private $master;
 
     /**
      * Get id

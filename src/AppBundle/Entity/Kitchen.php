@@ -3,14 +3,20 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
- * Inventory
+ * Kitchen
  *
- * @ORM\Table(name="inventory")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\InventoryRepository")
+ * @ORM\Table(name="kitchen")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\KitchenRepository")
+ *
+ * @ExclusionPolicy("all") 
  */
-class Inventory
+class Kitchen
 {
     /**
      * @var int
@@ -18,6 +24,7 @@ class Inventory
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -25,6 +32,7 @@ class Inventory
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     private $name;
 
@@ -32,6 +40,7 @@ class Inventory
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=255)
+     * @Expose
      */
     private $location;
 
@@ -50,7 +59,7 @@ class Inventory
      *
      * @param string $name
      *
-     * @return Inventory
+     * @return Kitchen
      */
     public function setName($name)
     {
@@ -64,7 +73,7 @@ class Inventory
      *
      * @param string $location
      *
-     * @return Inventory
+     * @return Kitchen
      */
     public function setLocation($location)
     {
@@ -92,5 +101,24 @@ class Inventory
     {
         return $this->location;
     }
+
+    /**
+     * Get the formatted kitchen data to display
+     *
+     * @param $separator: the separator between name and location (default: ' ')
+     * @return String
+     * @VirtualProperty
+     */
+    
+    /*
+    public function getKitchenData($separator = ' '){
+        if($this->getName()!=null && $this->getLocation()!=null){
+            return 'lol';
+        }
+        else{
+            return $this->getId();
+        }
+    }
+    */
 }
 

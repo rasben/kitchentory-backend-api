@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * InventoryIngredient
+ * KitchenIngredient
  *
- * @ORM\Table(name="inventory_ingredient")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\InventoryIngredientRepository")
+ * @ORM\Table(name="kitchen_ingredient")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\KitchenIngredientRepository")
  */
-class InventoryIngredient
+class KitchenIngredient
 {
     /**
      * @var int
@@ -22,10 +22,10 @@ class InventoryIngredient
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Inventory")
-     * @ORM\JoinColumn(name="inventory_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Kitchen")
+     * @ORM\JoinColumn(name="kitchen_id", referencedColumnName="id")
      */
-    private $inventoryID;
+    private $kitchenID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ingredient")
@@ -45,27 +45,27 @@ class InventoryIngredient
     }
 
     /**
-     * Set inventoryID
+     * Set kitchenID
      *
-     * @param integer $inventoryID
+     * @param integer $kitchenID
      *
-     * @return InventoryIngredient
+     * @return KitchenIngredient
      */
-    public function setInventoryID($inventoryID)
+    public function setKitchenID($kitchenID)
     {
-        $this->inventoryID = $inventoryID;
+        $this->kitchenID = $kitchenID;
 
         return $this;
     }
 
     /**
-     * Get inventoryID
+     * Get kitchenID
      *
      * @return int
      */
-    public function getInventoryID()
+    public function getKitchenID()
     {
-        return $this->inventoryID;
+        return $this->kitchenID;
     }
 
     /**
@@ -73,7 +73,7 @@ class InventoryIngredient
      *
      * @param integer $ingredientID
      *
-     * @return InventoryIngredient
+     * @return KitchenIngredient
      */
     public function setIngredientID($ingredientID)
     {

@@ -35,10 +35,10 @@ class KitchenUser
     private $userID;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Inventory")
-     * @ORM\JoinColumn(name="inventory_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Kitchen")
+     * @ORM\JoinColumn(name="kitchen_id", referencedColumnName="id")
      */
-    private $inventoryID;
+    private $kitchenID;
 
     /**
      * Get id

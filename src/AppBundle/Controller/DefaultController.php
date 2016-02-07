@@ -7,8 +7,8 @@ use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\IngredientAlias;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\RecipeAmount;
-use AppBundle\Entity\Inventory;
-use AppBundle\Entity\InventoryIngredient;
+use AppBundle\Entity\Kitchen;
+use AppBundle\Entity\KitchenIngredient;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,7 +51,6 @@ class DefaultController extends Controller {
         $ingredient->setCategoryID($category);
         $ingredient->setAmountID($amount2);
 
-
         $em = $this->getDoctrine()->getManager();
         $em->persist($amount);
         $em->persist($amount2);
@@ -67,14 +66,16 @@ class DefaultController extends Controller {
     /**
      * @Route("/example/form", name="exampleform")
      */
-    public function newAction(Request $request) {
-        // create a inventory and give it some dummy data for this example
-        $inventory = new Inventory();
-        $inventory->setName('set a name');
 
-        $form = $this->createFormBuilder($inventory)
+    /*
+    public function newAction(Request $request) {
+        // create a kitchen and give it some dummy data for this example
+        $kitchen = new Kitchen();
+        $kitchen->setName('set a name');
+
+        $form = $this->createFormBuilder($kitchen)
             ->add('name', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Create inventory'))
+            ->add('save', SubmitType::class, array('label' => 'Create kitchen'))
             ->getForm();
 
         $form->handleRequest($request);
@@ -85,7 +86,7 @@ class DefaultController extends Controller {
 
             $em = $this->getDoctrine()->getManager();
             
-            $em->persist($inventory);
+            $em->persist($kitchen);
             $em->flush();
             
 
@@ -95,8 +96,10 @@ class DefaultController extends Controller {
         return $this->render('default/new.html.twig', array(
             'form' => $form->createView(),
         ));
-    }
 
+        
+    }
+*/
 
 
 }
