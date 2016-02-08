@@ -24,9 +24,9 @@ class Language
     /**
      * @var string
      *
-     * @ORM\Column(name="language", type="string", length=255, unique=true)
+     * @ORM\Column(name="code", type="string", length=10, unique=true)
      */
-    private $language;
+    private $code;
 
     /**
      * Get id
@@ -39,27 +39,27 @@ class Language
     }
 
     /**
-     * Set language
+     * Set code
      *
-     * @param string $language
+     * @param string $code
      *
-     * @return Language
+     * @return Code
      */
-    public function setLanguage($language)
+    public function setCode($code)
     {
-        $this->language = $language;
+        $this->code = $code;
 
         return $this;
     }
 
     /**
-     * Get language
+     * Get code
      *
      * @return string
      */
-    public function getLanguage()
+    public function getCode()
     {
-        return $this->language;
+        return $this->code;
     }
 }
 

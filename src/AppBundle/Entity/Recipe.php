@@ -35,6 +35,18 @@ class Recipe
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="RecipeSource")
+     * @ORM\JoinColumn(name="recipe_source_id", referencedColumnName="id")
+     */
+    private $recipeSourceID;
 
     /**
      * Get id
@@ -92,6 +104,30 @@ class Recipe
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Recipe
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }
 

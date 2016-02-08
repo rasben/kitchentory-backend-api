@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * RecipeAmount
+ * ShoppinglistIngredient
  *
- * @ORM\Table(name="recipe_amount")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeAmountRepository")
+ * @ORM\Table(name="shoppinglist_ingredient")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ShoppinglistIngredientRepository")
  */
-class RecipeAmount
+class ShoppinglistIngredient
 {
     /**
      * @var int
@@ -22,16 +22,16 @@ class RecipeAmount
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Recipe")
-     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Shoppinglist")
+     * @ORM\JoinColumn(name="shoppinglist_id", referencedColumnName="id")
      */
-    private $recipeID;
+    private $shoppinglistID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ingredient")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      */
-    private $integredientID;
+    private $ingredientID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Amount")
@@ -58,75 +58,51 @@ class RecipeAmount
     }
 
     /**
-     * Set recipeID
+     * Set shoppinglistID
      *
-     * @param integer $recipeID
+     * @param integer $shoppinglistID
      *
-     * @return RecipeAmount
+     * @return ShoppinglistIngredient
      */
-    public function setRecipeID($recipeID)
+    public function setShoppinglistID($shoppinglistID)
     {
-        $this->recipeID = $recipeID;
+        $this->shoppinglistID = $shoppinglistID;
 
         return $this;
     }
 
     /**
-     * Get recipeID
+     * Get shoppinglistID
      *
      * @return int
      */
-    public function getRecipeID()
+    public function getShoppinglistID()
     {
-        return $this->recipeID;
+        return $this->shoppinglistID;
     }
 
     /**
-     * Set integredientID
+     * Set ingredientID
      *
-     * @param integer $integredientID
+     * @param integer $ingredientID
      *
-     * @return RecipeAmount
+     * @return ShoppinglistIngredient
      */
-    public function setIntegredientID($integredientID)
+    public function setIngredientID($ingredientID)
     {
-        $this->integredientID = $integredientID;
+        $this->ingredientID = $ingredientID;
 
         return $this;
     }
 
     /**
-     * Get integredientID
+     * Get ingredientID
      *
      * @return int
      */
-    public function getIntegredientID()
+    public function getIngredientID()
     {
-        return $this->integredientID;
-    }
-
-    /**
-     * Set amountID
-     *
-     * @param integer $amountID
-     *
-     * @return RecipeAmount
-     */
-    public function setAmountID($amountID)
-    {
-        $this->amountID = $amountID;
-
-        return $this;
-    }
-
-    /**
-     * Get amountID
-     *
-     * @return int
-     */
-    public function getAmountID()
-    {
-        return $this->amountID;
+        return $this->ingredientID;
     }
 
     /**
@@ -134,7 +110,7 @@ class RecipeAmount
      *
      * @param integer $amount
      *
-     * @return RecipeAmount
+     * @return ShoppinglistAmount
      */
     public function setAmount($amount)
     {

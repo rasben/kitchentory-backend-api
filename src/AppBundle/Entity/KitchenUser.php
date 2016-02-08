@@ -22,11 +22,10 @@ class KitchenUser
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Role")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
-    private $role;
+    private $roleID;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")

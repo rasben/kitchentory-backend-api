@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * RecipeSource
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Table(name="recipe_source")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeSourceRepository")
  */
-class User
+class RecipeSource
 {
     /**
      * @var int
@@ -31,16 +31,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     * @ORM\Column(name="url", type="string", length=255)
      */
-    private $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fullName", type="string", length=255)
-     */
-    private $fullName;
+    private $url;
 
     /**
      * Get id
@@ -77,52 +70,27 @@ class User
     }
 
     /**
-     * Set password
+     * Set url
      *
-     * @param string $password
+     * @param string $url
      *
      * @return User
      */
-    public function setPassword($password)
+    public function setUrl($url)
     {
-        $this->password = $password;
+        $this->url = $url;
 
         return $this;
     }
 
     /**
-     * Get password
+     * Get url
      *
      * @return string
      */
-    public function getPassword()
+    public function getUrl()
     {
-        return $this->password;
-    }
-
-
-    /**
-     * Set fullName
-     *
-     * @param string $fullName
-     *
-     * @return User
-     */
-    public function setFullName($fullName)
-    {
-        $this->fullName = $fullName;
-
-        return $this;
-    }
-
-    /**
-     * Get fullName
-     *
-     * @return string
-     */
-    public function getFullName()
-    {
-        return $this->fullName;
+        return $this->url;
     }
 }
 
