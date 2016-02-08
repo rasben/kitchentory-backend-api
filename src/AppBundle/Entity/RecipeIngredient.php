@@ -23,26 +23,26 @@ class RecipeIngredient
 
     /**
      * @ORM\ManyToOne(targetEntity="Recipe")
-     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id", nullable=false)
      */
     private $recipeID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ingredient")
-     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id", nullable=false)
      */
     private $ingredientID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Amount")
-     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id", nullable=true)
      */
     private $amountID;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="amount", type="integer")
+     * @ORM\Column(name="amount", type="integer", nullable=false, options={"default":0})
      */
     private $amount;
 

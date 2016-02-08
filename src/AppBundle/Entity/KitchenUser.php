@@ -23,19 +23,19 @@ class KitchenUser
 
     /**
      * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
      */
     private $roleID;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $userID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Kitchen")
-     * @ORM\JoinColumn(name="kitchen_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="kitchen_id", referencedColumnName="id", nullable=false)
      */
     private $kitchenID;
 

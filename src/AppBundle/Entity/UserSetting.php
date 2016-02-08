@@ -22,13 +22,13 @@ class UserSetting {
 
     /**
      * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $userID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Kitchen")
-     * @ORM\JoinColumn(name="default_kitchen_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="default_kitchen_id", referencedColumnName="id", nullable=true)
      */
     private $defaultKitchenID;
 

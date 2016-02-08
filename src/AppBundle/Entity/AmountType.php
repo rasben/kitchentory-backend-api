@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * AmountType
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="amount_type")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AmountTypeRepository")
  */
-class Category
+class AmountType
 {
     /**
      * @var int
@@ -24,17 +24,16 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, unique=true, nullable=false)
      */
     private $name;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Amount")
+     * @ORM\JoinColumn(name="master_amount_id", referencedColumnName="id", nullable=true)
+     */
+    private $masterAmountID;
 
     /**
      * Get id
@@ -51,7 +50,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return Amount
      */
     public function setName($name)
     {
@@ -70,28 +69,5 @@ class Category
         return $this->name;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Category
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 }
 

@@ -38,13 +38,13 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity="RecipeSource")
-     * @ORM\JoinColumn(name="recipe_source_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="recipe_source_id", referencedColumnName="id", nullable=true)
      */
     private $recipeSourceID;
 

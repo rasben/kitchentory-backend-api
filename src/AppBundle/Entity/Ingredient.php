@@ -24,14 +24,14 @@ class Ingredient
     /**
      * @var int
      *
-     * @ORM\Column(name="Amount", type="integer")
+     * @ORM\Column(name="Amount", type="integer", nullable=false, options={"default":0})
      */
     private $amount;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="Global", type="boolean")
+     * @ORM\Column(name="Global", type="boolean", nullable=false, options={"default":0})
      */
     private $global;
 
@@ -43,7 +43,7 @@ class Ingredient
 
     /**
      * @ORM\ManyToOne(targetEntity="Amount")
-     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id", nullable=false)
      */
     private $amountID;
 

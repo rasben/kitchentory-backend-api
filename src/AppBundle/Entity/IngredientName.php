@@ -27,19 +27,19 @@ class IngredientName
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ingredient")
-     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id", nullable=false)
      */
     private $ingredientID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Language")
-     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id", nullable=false)
      */
     private $languageID;
 

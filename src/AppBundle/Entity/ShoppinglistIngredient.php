@@ -23,26 +23,26 @@ class ShoppinglistIngredient
 
     /**
      * @ORM\ManyToOne(targetEntity="Shoppinglist")
-     * @ORM\JoinColumn(name="shoppinglist_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="shoppinglist_id", referencedColumnName="id", nullable=false)
      */
     private $shoppinglistID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ingredient")
-     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id", nullable=false)
      */
     private $ingredientID;
 
     /**
      * @ORM\ManyToOne(targetEntity="Amount")
-     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="amount_id", referencedColumnName="id", nullable=true)
      */
     private $amountID;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="amount", type="integer")
+     * @ORM\Column(name="amount", type="integer", nullable=false, options={"default":0})
      */
     private $amount;
 

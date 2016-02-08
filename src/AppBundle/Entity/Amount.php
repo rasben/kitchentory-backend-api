@@ -24,9 +24,15 @@ class Amount
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255, unique=true,  nullable=false)
      */
     private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AmountType")
+     * @ORM\JoinColumn(name="amount_type_id", referencedColumnName="id",  nullable=false)
+     */
+    private $amountTypeID;
 
     /**
      * Get id
