@@ -24,7 +24,7 @@ class IngredientRestController extends Controller {
       $query = $em->createQuery(
         'SELECT IGN.name, L
         FROM AppBundle:IngredientName IGN
-        INNER JOIN AppBundle:Language L WITH IGN.languageID=L.id
+        INNER JOIN AppBundle:Language L WITH IGN.languageCode=L.code
         WHERE IGN.ingredientID=:ingID
         ORDER BY IGN.master DESC'
       )->setParameters(['ingID' => $ingredientIdentifier]);
@@ -43,7 +43,7 @@ class IngredientRestController extends Controller {
       $query = $em->createQuery(
         'SELECT IGN.name, L
         FROM AppBundle:IngredientName IGN
-        INNER JOIN AppBundle:Language L WITH IGN.languageID=L.id
+        INNER JOIN AppBundle:Language L WITH IGN.languageCode=L.code
         WHERE IGN.name=:ingName
         ORDER BY IGN.master DESC'
       )->setParameters(['ingName' => $ingredientIdentifier]);
@@ -58,6 +58,9 @@ class IngredientRestController extends Controller {
       $ingredients = $query->getResult();
     }
 
+
+    /*
+    This is a bad idea. figure out how to get SQL to spit out proper ID names.
     // Putting language info in a more descriptive field.
     foreach($ingredientsNames as &$ingredientsName){
       if (isset($ingredientsName[0])) {
@@ -65,6 +68,8 @@ class IngredientRestController extends Controller {
         unset($ingredientsName[0]);
       }
     }
+
+    */
 
     $ingredients = array_merge($ingredients, ['ingredientNames' => $ingredientsNames]);
 
