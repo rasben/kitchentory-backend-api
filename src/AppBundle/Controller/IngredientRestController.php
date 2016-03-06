@@ -16,18 +16,20 @@ class IngredientRestController extends Controller {
   }
 
   public function getIngredientAction($ingredientIdentifier){
-
     $em = $this->getDoctrine()->getManager();
+    $user = $this->getUser();
+
+    $userHelper = $this->get('app.user_helper', $em);
+    $language = $userHelper->getLanguage($user->getId());
 
     // Looking with an ID
     if (is_numeric($ingredientIdentifier)) {
       $query = $em->createQuery(
-        'SELECT IGN.name, L
+        'SELECT IGN.name
         FROM AppBundle:IngredientName IGN
-        INNER JOIN AppBundle:Language L WITH IGN.languageCode=L.code
-        WHERE IGN.ingredientID=:ingID
+        WHERE IGN.ingredientID=:ingID AND IGN.languageCode=:languageCode
         ORDER BY IGN.master DESC'
-      )->setParameters(['ingID' => $ingredientIdentifier]);
+      )->setParameters(['ingID' => $ingredientIdentifier, 'languageCode' => $language->getCode()]);
       $ingredientsNames = $query->getResult();
 
       $query = $em->createQuery(
@@ -38,44 +40,47 @@ class IngredientRestController extends Controller {
       )->setParameters(['ingID' => $ingredientIdentifier]);
       $ingredients = $query->getResult();
     }
+
     // Looking with a name
     else {
+
       $query = $em->createQuery(
-        'SELECT IGN.name, L
+        'SELECT IDENTITY(IGN.ingredientID)
         FROM AppBundle:IngredientName IGN
-        INNER JOIN AppBundle:Language L WITH IGN.languageCode=L.code
-        WHERE IGN.name=:ingName
+        WHERE IGN.name=:ingName AND IGN.languageCode = :languageCode
         ORDER BY IGN.master DESC'
-      )->setParameters(['ingName' => $ingredientIdentifier]);
+      )->setParameters(['ingName' => $ingredientIdentifier, 'languageCode' => $language->getCode()]);
+      $ingredientID = $query->getResult();
+
+      if(empty($ingredientID)){
+        throw $this->createNotFoundException();
+      }
+
+      $ingredientID = $ingredientID[0][1];
+
+      $query = $em->createQuery(
+        'SELECT IGN.name
+        FROM AppBundle:IngredientName IGN
+        WHERE IGN.ingredientID=:ingID AND IGN.languageCode = :languageCode
+        ORDER BY IGN.master DESC'
+      )->setParameters(['ingID' => $ingredientID, 'languageCode' => $language->getCode()]);
       $ingredientsNames = $query->getResult();
+
 
       $query = $em->createQuery(
         'SELECT I
-        FROM AppBundle:IngredientName IGN
-        INNER JOIN AppBundle:Ingredient I WITH IGN.ingredientID=I.id
-        WHERE IGN.name=:ingName'
-      )->setParameters(['ingName' => $ingredientIdentifier]);
+        FROM AppBundle:Ingredient I
+        WHERE I.id=:ingID'
+      )->setParameters(['ingID' => $ingredientID]);
       $ingredients = $query->getResult();
     }
 
-
-    /*
-    This is a bad idea. figure out how to get SQL to spit out proper ID names.
-    // Putting language info in a more descriptive field.
-    foreach($ingredientsNames as &$ingredientsName){
-      if (isset($ingredientsName[0])) {
-        $ingredientsName['language'] = $ingredientsName[0];
-        unset($ingredientsName[0]);
-      }
-    }
-
-    */
-
-    $ingredients = array_merge($ingredients, ['ingredientNames' => $ingredientsNames]);
-
-    if(empty($ingredients) || empty($ingredientsNames)){
+    if(empty($ingredients)){
       throw $this->createNotFoundException();
     }
+
+
+    $ingredients = array_merge($ingredients, ['ingredientNames' => $ingredientsNames]);
 
     return $ingredients;
   }

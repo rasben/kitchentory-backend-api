@@ -57,7 +57,7 @@ class KitchenRestController extends Controller {
     $query = $em->createQuery('
       SELECT U.id, U.username, U.fullName
       FROM AppBundle:KitchenUser KU
-      LEFT JOIN AppBundle:USER U WITH (U.id = KU.userID)
+      LEFT JOIN AppBundle:User U WITH (U.id = KU.userID)
       WHERE KU.kitchenID = :kitchenID
     ')->setParameters(['kitchenID' => $kitchenid]);
 
@@ -71,11 +71,23 @@ class KitchenRestController extends Controller {
   }
 
   public function getKitchenIngredientsAction($kitchenid){
-    $ingredients = $this->getDoctrine()->getRepository('AppBundle:KitchenIngredient')->findByKitchenID($kitchenid);
+    $em = $this->getDoctrine()->getManager();
+    $user = $this->getUser();
 
-    if(empty($ingredients)){
-      throw $this->createNotFoundException();
-    }
+    $userHelper = $this->get('app.user_helper', $em);
+    $language = $userHelper->getLanguage($user->getId());
+
+
+    $query = $em->createQuery('
+      SELECT I, INa.name, INa.master
+      FROM AppBundle:KitchenIngredient KI
+      LEFT JOIN AppBundle:IngredientName INa with (INa.languageCode=:languageCode AND INa.ingredientID = KI.ingredientID)
+      LEFT JOIN AppBundle:Ingredient I with (I.id = KI.ingredientID)
+      WHERE KI.kitchenID = :kitchenID
+    ')->setParameters(['kitchenID' => $kitchenid, 'languageCode' => $language->getCode()]);
+
+    $ingredients = $query->getResult();
+
     return $ingredients;
   }
 }

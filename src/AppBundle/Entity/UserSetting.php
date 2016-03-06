@@ -46,4 +46,10 @@ class UserSetting {
      */
     private $moderator;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Language")
+     * @ORM\JoinColumn(name="language_code", referencedColumnName="code", nullable=false)
+     */
+    private $languageCode;
+
 }

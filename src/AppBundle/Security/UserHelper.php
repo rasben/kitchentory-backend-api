@@ -50,4 +50,20 @@ class UserHelper {
         return true;
     }
 
+    public function getLanguage($userID) {
+        /*
+         * Returns languageCode of the user
+         */
+
+        $query = $this->em->createQuery(
+          'SELECT L
+          FROM AppBundle:UserSetting US
+          INNER JOIN AppBundle:Language L WITH L.code=US.languageCode
+          WHERE US.userID=:userID'
+        )->setParameters(['userID' => $userID]);
+        $language = $query->getResult();
+
+        return $language[0];
+    }
+
 }
