@@ -35,7 +35,7 @@ class UserSetting {
     /**
      * @var string
      *
-     * @ORM\Column(name="autoOpenDefaultKitchen", type="boolean", nullable=false, options={"default":1})
+     * @ORM\Column(name="auto_open_default_kitchen", type="boolean", nullable=false, options={"default":1})
      */
     private $autoOpenDefaultKitchen;
 

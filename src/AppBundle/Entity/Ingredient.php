@@ -24,14 +24,14 @@ class Ingredient
     /**
      * @var int
      *
-     * @ORM\Column(name="Amount", type="integer", nullable=false, options={"default":0})
+     * @ORM\Column(name="amount", type="integer", nullable=false, options={"default":0})
      */
     private $amount;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="Global", type="boolean", nullable=false, options={"default":0})
+     * @ORM\Column(name="global", type="boolean", nullable=false, options={"default":0})
      */
     private $global;
 

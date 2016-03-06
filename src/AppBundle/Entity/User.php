@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -24,9 +25,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="username", type="string", length=255, nullable=false, unique=true)
      */
-    private $name;
+    private $username;
 
     /**
      * @var string
@@ -38,9 +39,14 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="fullName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="full_name", type="string", length=255, nullable=true)
      */
     private $fullName;
+
+    /**
+     * @ORM\Column(name="api_key", type="string", unique=true)
+     */
+    private $apiKey;
 
     /**
      * Get id
@@ -53,27 +59,27 @@ class User
     }
 
     /**
-     * Set name
+     * Set username
      *
-     * @param string $name
+     * @param string $username
      *
      * @return User
      */
-    public function setName($name)
+    public function setUsername($username)
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get username
      *
      * @return string
      */
-    public function getName()
+    public function getUsername()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
@@ -115,6 +121,31 @@ class User
         return $this;
     }
 
+
+    /**
+     * Set apiKey
+     *
+     * @param string $apiKey
+     *
+     * @return User
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    /**
+     * Get apiKey
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
     /**
      * Get fullName
      *
@@ -123,6 +154,20 @@ class User
     public function getFullName()
     {
         return $this->fullName;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        return NULL;
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
 
