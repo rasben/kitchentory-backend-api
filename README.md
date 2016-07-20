@@ -1,4 +1,12 @@
 kitchentory
 ===========
 
-A Symfony project created on January 9, 2016, 8:19 pm.
+
+
+
+
+
+## Adding Mock DB data:
+$ php app/console doctrine:schema:drop --force (optional)
+$ php app/console doctrine:schema:update --force
+$ php app/console doctrine:fixtures:load
