@@ -50,27 +50,75 @@ class KitchenUser
     }
 
     /**
-     * Set role
+     * Set roleID
      *
-     * @param string $role
+     * @param int $roleID
      *
      * @return KitchenUser
      */
-    public function setRole($role)
+    public function setRoleID($roleID)
     {
-        $this->role = $role;
+        $this->roleID = $roleID;
 
         return $this;
     }
 
     /**
-     * Get role
+     * Get roleID
      *
      * @return string
      */
-    public function getRole()
+    public function getRoleID()
     {
-        return $this->role;
+        return $this->roleID;
+    }
+
+    /**
+     * Set userID
+     *
+     * @param int $userID
+     *
+     * @return KitchenUser
+     */
+    public function setUserID($userID)
+    {
+        $this->userID = $userID;
+
+        return $this;
+    }
+
+    /**
+     * Get userID
+     *
+     * @return string
+     */
+    public function getUserID()
+    {
+        return $this->userID;
+    }
+
+    /**
+     * Set kitchenID
+     *
+     * @param int $kitchenID
+     *
+     * @return KitchenUser
+     */
+    public function setKitchenID($kitchenID)
+    {
+        $this->kitchenID = $kitchenID;
+
+        return $this;
+    }
+
+    /**
+     * Get kitchenID
+     *
+     * @return string
+     */
+    public function getKitchenID()
+    {
+        return $this->kitchenID;
     }
 }
 

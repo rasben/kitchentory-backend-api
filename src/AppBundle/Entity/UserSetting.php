@@ -33,17 +33,129 @@ class UserSetting {
     private $defaultKitchenID;
 
     /**
-     * @var string
+     * @var int
      *
      * @ORM\Column(name="autoOpenDefaultKitchen", type="boolean", nullable=false, options={"default":1})
      */
     private $autoOpenDefaultKitchen;
 
     /**
-     * @var string
+     * @var int
      *
      * @ORM\Column(name="moderator", type="boolean", nullable=false, options={"default":0})
      */
     private $moderator;
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get userID
+     *
+     * @return int
+     */
+    public function getUserID()
+    {
+        return $this->userID;
+    }
+
+    /**
+     * Get defaultKitchenID
+     *
+     * @return int
+     */
+    public function getDefaultKitchenID()
+    {
+        return $this->defaultKitchenID;
+    }
+
+    /**
+     * Get autoOpenDefaultKitchen
+     *
+     * @return int
+     */
+    public function getAutoOpenDefaultKitchen()
+    {
+        return $this->autoOpenDefaultKitchen;
+    }
+
+
+    /**
+     * Get moderator
+     *
+     * @return int
+     */
+    public function getModerator()
+    {
+        return $this->moderator;
+    }
+
+    /**
+     * Set userID
+     *
+     * @param int $userID
+     *
+     * @return User
+     */
+    public function setUserID($userID)
+    {
+        $this->userID = $userID;
+
+        return $this;
+    }
+
+    /**
+     * Set defaultKitchenID
+     *
+     * @param int $defaultKitchenID
+     *
+     * @return User
+     */
+    public function setDefaultKitchenID($defaultKitchenID)
+    {
+        $this->defaultKitchenID = $defaultKitchenID;
+
+        return $this;
+    }
+
+    /**
+     * Set autoOpenDefaultKitchen
+     *
+     * @param int $autoOpenDefaultKitchen
+     *
+     * @return User
+     */
+    public function setAutoOpenDefaultKitchen($autoOpenDefaultKitchen)
+    {
+        $this->autoOpenDefaultKitchen = $autoOpenDefaultKitchen;
+
+        return $this;
+    }
+
+
+    /**
+     * Set moderator
+     *
+     * @param int $moderator
+     *
+     * @return User
+     */
+    public function setModerator($moderator)
+    {
+        $this->moderator = $moderator;
+
+        return $this;
+    }
+
+
 
 }

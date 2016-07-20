@@ -27,4 +27,31 @@ class Role
      * @ORM\Column(name="title", type="string", length=255, nullable=false, unique=true)
      */
     private $title;
+
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return User
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
 }

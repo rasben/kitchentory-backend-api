@@ -29,10 +29,11 @@ class Amount
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AmountType")
-     * @ORM\JoinColumn(name="amount_type_id", referencedColumnName="id",  nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="shortName", type="string", length=255, unique=true,  nullable=false)
      */
-    private $amountTypeID;
+    private $shortName;
 
     /**
      * Get id
@@ -66,6 +67,30 @@ class Amount
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set shortName
+     *
+     * @param string $shortName
+     *
+     * @return Amount
+     */
+    public function setShortName($shortName)
+    {
+        $this->shortName = $shortName;
+
+        return $this;
+    }
+
+    /**
+     * Get shortName
+     *
+     * @return string
+     */
+    public function getShortName()
+    {
+        return $this->shortName;
     }
 
 }

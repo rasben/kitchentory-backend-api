@@ -83,5 +83,79 @@ class IngredientName
     {
         return $this->name;
     }
+
+    /**
+     * Set ingredientID
+     *
+     * @param integer $ingredientID
+     *
+     * @return IngredientName
+     */
+    public function setIngredientID($ingredientID)
+    {
+        $this->ingredientID = $ingredientID;
+
+        return $this;
+    }
+
+    /**
+     * Get ingredientID
+     *
+     * @return int
+     */
+    public function getIngredientID()
+    {
+        return $this->ingredientID;
+    }
+
+    /**
+     * Set languageID
+     *
+     * @param integer $languageID
+     *
+     * @return IngredientName
+     */
+    public function setLanguageID($languageID)
+    {
+        $this->languageID = $languageID;
+
+        return $this;
+    }
+
+    /**
+     * Get languageID
+     *
+     * @return int
+     */
+    public function getLanguageID()
+    {
+        return $this->languageID;
+    }
+
+    /**
+     * Set master
+     *
+     * @param int $master
+     *
+     * @return IngredientName
+     */
+    public function setMaster($master)
+    {
+        $this->master = $master;
+
+        return $this;
+    }
+
+    /**
+     * Get master
+     *
+     * @return int
+     */
+    public function getMaster()
+    {
+        return $this->master;
+    }
+
+
 }
 

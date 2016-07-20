@@ -22,13 +22,6 @@ class Ingredient
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Amount", type="integer", nullable=false, options={"default":0})
-     */
-    private $amount;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="Global", type="boolean", nullable=false, options={"default":0})
@@ -58,19 +51,6 @@ class Ingredient
         return $this->id;
     }
 
-    /**
-     * Set amount
-     *
-     * @param integer $amount
-     *
-     * @return Ingredient
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
 
     /**
      * Set global
@@ -86,15 +66,7 @@ class Ingredient
         return $this;
     }
 
-    /**
-     * Get amount
-     *
-     * @return int
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
+
 
     /**
      * Get global
