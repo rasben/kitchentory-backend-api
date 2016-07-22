@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -38,9 +39,14 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="fullName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="full_name", type="string", length=255, nullable=true)
      */
     private $fullName;
+
+    /**
+     * @ORM\Column(name="api_key", type="string", unique=true)
+     */
+    private $apiKey;
 
     /**
      * Get id
@@ -124,5 +130,44 @@ class User
     {
         return $this->fullName;
     }
+
+    /**
+     * Set apiKey
+     *
+     * @param string $apiKey
+     *
+     * @return User
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    /**
+     * Get apiKey
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        return NULL;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
 }
 

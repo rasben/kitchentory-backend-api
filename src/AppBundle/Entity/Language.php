@@ -12,31 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Language
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=10, unique=true, nullable=false)
+     * @ORM\Id
      */
     private $code;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set code
