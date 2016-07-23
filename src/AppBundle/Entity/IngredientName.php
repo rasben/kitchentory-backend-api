@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * IngredientName
  *
  * @ORM\Table(name="ingredient_name", uniqueConstraints={
- *     @ORM\UniqueConstraint(name="uq_name_language", columns={"name", "language_id"})})
+ *     @ORM\UniqueConstraint(name="uq_name_language", columns={"name", "language_code"})})
  *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientNameRepository")
  */
@@ -39,7 +39,7 @@ class IngredientName
 
     /**
      * @ORM\ManyToOne(targetEntity="Language")
-     * @ORM\JoinColumn(name="language_code", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="language_code", referencedColumnName="code", nullable=false)
      */
     private $languageCode;
 
@@ -109,27 +109,27 @@ class IngredientName
     }
 
     /**
-     * Set languageID
+     * Set languageCode
      *
-     * @param integer $languageID
+     * @param string $languageCode
      *
      * @return IngredientName
      */
-    public function setLanguageID($languageID)
+    public function setLanguageCode($languageCode)
     {
-        $this->languageID = $languageID;
+        $this->languageCode = $languageCode;
 
         return $this;
     }
 
     /**
-     * Get languageID
+     * Get languageCode
      *
-     * @return int
+     * @return string
      */
-    public function getLanguageID()
+    public function getLanguageCode()
     {
-        return $this->languageID;
+        return $this->languageCode;
     }
 
     /**

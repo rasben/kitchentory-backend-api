@@ -35,7 +35,7 @@ class UserSetting {
     /**
      * @var int
      *
-     * @ORM\Column(name="autoOpen_default_kitchen", type="boolean", nullable=false, options={"default":1})
+     * @ORM\Column(name="auto_open_default_kitchen", type="boolean", nullable=false, options={"default":1})
      */
     private $autoOpenDefaultKitchen;
 
@@ -132,7 +132,7 @@ class UserSetting {
     /**
      * Set languageCode
      *
-     * @param int $languageCode
+     * @param string $languageCode
      *
      * @return User
      */

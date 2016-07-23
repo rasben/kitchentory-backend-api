@@ -9,6 +9,8 @@ class KitchenRestController extends Controller {
   public function getKitchensAction(){
     $user = $this->getUser();
 
+
+
     $em = $this->getDoctrine()->getManager();
 
     $query = $em->createQuery(
