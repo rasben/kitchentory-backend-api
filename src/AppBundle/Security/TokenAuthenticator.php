@@ -9,6 +9,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Doctrine\ORM\EntityManager;
 
 class TokenAuthenticator extends AbstractGuardAuthenticator
@@ -28,7 +29,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
         if (!$token = $request->headers->get('X-AUTH-TOKEN')) {
             // no token? Return null and no other methods will be called
-            return;
+
         }
 
         // What you return here will be passed to getUser() as $credentials
@@ -39,6 +40,8 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+
+
         $apiKey = $credentials['token'];
 
         // if null, authentication will fail
@@ -53,38 +56,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         // no credential check is needed in this case
 
         // return true to cause authentication success
-        //require_once('krumo/class.krumo.php'); krumo($this->getRequest()); krumo($credentials); exit;
-
-
-        // The API key contains a timestamp from when it was generated.
-        // We need to check if the API key has expired and needs to be re-authenticated.
-        $apiKeyBirthday = strtotime(substr($credentials['token'], 0, 13));
-
-
-        //require_once('krumo/class.krumo.php');  krumo($credentials); exit;
-
-/*
-        $password = trim($this->getRequest()->query->get('password'));
-
-
-
-        // Get the encoder for the users password
-        $encoder_service = $this->get('security.encoder_factory');
-        $encoder = $encoder_service->getEncoder($user);
-
-        // Note the difference
-        if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
-            return true;
-
-        } else {
-            return false;
-        }
-
-
-        require_once('krumo/class.krumo.php'); krumo(print_r($user)); krumo($credentials); exit;
-*/
         return true;
-
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
