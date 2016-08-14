@@ -14,10 +14,18 @@ class Language
 {
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=10, unique=true, nullable=false)
-     * @ORM\Id
      */
     private $code;
 
