@@ -31,7 +31,7 @@ class Amount
     /**
      * @var string
      *
-     * @ORM\Column(name="shortName", type="string", length=255, unique=true,  nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=255, unique=true,  nullable=false)
      */
     private $shortName;
 

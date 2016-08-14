@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Language
 {
+
     /**
      * @var int
      *
@@ -28,15 +29,6 @@ class Language
      */
     private $code;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set code

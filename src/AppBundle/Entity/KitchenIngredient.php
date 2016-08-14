@@ -42,7 +42,7 @@ class KitchenIngredient
     /**
      * @var int
      *
-     * @ORM\Column(name="amount", type="integer", nullable=false, options={"default":0})
+     * @ORM\Column(name="amount", type="integer", nullable=true)
      */
     private $amount;
 

@@ -35,7 +35,7 @@ class UserSetting {
     /**
      * @var int
      *
-     * @ORM\Column(name="autoOpenDefaultKitchen", type="boolean", nullable=false, options={"default":1})
+     * @ORM\Column(name="auto_open_default_kitchen", type="boolean", nullable=false, options={"default":1})
      */
     private $autoOpenDefaultKitchen;
 
@@ -45,6 +45,12 @@ class UserSetting {
      * @ORM\Column(name="moderator", type="boolean", nullable=false, options={"default":0})
      */
     private $moderator;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Language")
+     * @ORM\JoinColumn(name="language_code", referencedColumnName="code", nullable=false)
+     */
+    private $languageCode;
 
 
 
@@ -79,6 +85,16 @@ class UserSetting {
     }
 
     /**
+     * Get languageCode
+     *
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->languageCode;
+    }
+
+    /**
      * Get autoOpenDefaultKitchen
      *
      * @return int
@@ -109,6 +125,20 @@ class UserSetting {
     public function setUserID($userID)
     {
         $this->userID = $userID;
+
+        return $this;
+    }
+
+    /**
+     * Set languageCode
+     *
+     * @param string $languageCode
+     *
+     * @return User
+     */
+    public function setLanguageCode($languageCode)
+    {
+        $this->languageCode = $languageCode;
 
         return $this;
     }

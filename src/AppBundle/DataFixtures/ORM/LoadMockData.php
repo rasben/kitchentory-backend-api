@@ -22,33 +22,37 @@ class LoadUserData implements FixtureInterface
     {
     	// Users
         $userNew = new User();
-        $userNew->setName('rasben');
+        $userNew->setUsername('rasben');
         $userNew->setPassword('rasben2');
         $userNew->setFullName('Benjamin Rasmussen');
+        $userNew->setApiKey('apirasben');
 
         $manager->persist($userNew);
         $manager->flush();
 
         $userNew = new User();
-        $userNew->setName('elvis');
+        $userNew->setUsername('elvis');
         $userNew->setPassword('elvis2');
         $userNew->setFullName('Elvis Presley');
+        $userNew->setApiKey('apielvis');
 
         $manager->persist($userNew);
         $manager->flush();
 
         $userNew = new User();
-        $userNew->setName('sherlock');
+        $userNew->setUsername('sherlock');
         $userNew->setPassword('sherlock2');
         $userNew->setFullName('Sherlock Holmes');
+        $userNew->setApiKey('apisherlock');
 
         $manager->persist($userNew);
         $manager->flush();
 
         $userNew = new User();
-        $userNew->setName('alexander');
+        $userNew->setUsername('alexander');
         $userNew->setPassword('alexander2');
         $userNew->setFullName('Alexander The Great');
+        $userNew->setApiKey('apialexander');
 
         $manager->persist($userNew);
         $manager->flush();
@@ -75,6 +79,24 @@ class LoadUserData implements FixtureInterface
         $manager->persist($kitchenNew);
         $manager->flush();
 
+        // Languages
+        $languageNew = new Language();
+        $languageNew->setCode('en');
+
+        $manager->persist($languageNew);
+        $manager->flush();
+
+        $languageNew = new Language();
+        $languageNew->setCode('da');
+
+        $manager->persist($languageNew);
+        $manager->flush();
+
+        $languageNew = new Language();
+        $languageNew->setCode('fr');
+
+        $manager->persist($languageNew);
+        $manager->flush();
 
         // User Settings
         $userSettingNew = new UserSetting();
@@ -82,6 +104,7 @@ class LoadUserData implements FixtureInterface
         $userSettingNew->setDefaultKitchenID($manager->getReference('AppBundle:Kitchen', 1));
         $userSettingNew->setAutoOpenDefaultKitchen(2);
         $userSettingNew->setModerator(2);
+        $userSettingNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($userSettingNew);
         $manager->flush();
@@ -91,6 +114,7 @@ class LoadUserData implements FixtureInterface
         $userSettingNew->setDefaultKitchenID($manager->getReference('AppBundle:Kitchen', 2));
         $userSettingNew->setAutoOpenDefaultKitchen(1);
         $userSettingNew->setModerator(1);
+        $userSettingNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($userSettingNew);
         $manager->flush();
@@ -100,6 +124,7 @@ class LoadUserData implements FixtureInterface
         $userSettingNew->setDefaultKitchenID($manager->getReference('AppBundle:Kitchen', 2));
         $userSettingNew->setAutoOpenDefaultKitchen(2);
         $userSettingNew->setModerator(1);
+        $userSettingNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($userSettingNew);
         $manager->flush();
@@ -110,6 +135,7 @@ class LoadUserData implements FixtureInterface
         $userSettingNew->setDefaultKitchenID($manager->getReference('AppBundle:Kitchen', 2));
         $userSettingNew->setAutoOpenDefaultKitchen(4);
         $userSettingNew->setModerator(2);
+        $userSettingNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($userSettingNew);
         $manager->flush();
@@ -163,25 +189,6 @@ class LoadUserData implements FixtureInterface
         $categoryNew->setName('bakery');
 
         $manager->persist($categoryNew);
-        $manager->flush();
-
-        // Languages
-        $languageNew = new Language();
-        $languageNew->setCode('en');
-
-        $manager->persist($languageNew);
-        $manager->flush();
-
-        $languageNew = new Language();
-        $languageNew->setCode('da');
-
-        $manager->persist($languageNew);
-        $manager->flush();
-
-        $languageNew = new Language();
-        $languageNew->setCode('fr');
-
-        $manager->persist($languageNew);
         $manager->flush();
 
         // Kitchen Users
@@ -273,8 +280,8 @@ class LoadUserData implements FixtureInterface
         $ingredientNew = new IngredientName();
         $ingredientNew->setName('Toast');
         $ingredientNew->setIngredientID($manager->getReference('AppBundle:Ingredient', 1));
-        $ingredientNew->setLanguageID($manager->getReference('AppBundle:Language', 1));
         $ingredientNew->setMaster(1);
+        $ingredientNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($ingredientNew);
         $manager->flush();
@@ -290,8 +297,8 @@ class LoadUserData implements FixtureInterface
         $ingredientNew = new IngredientName();
         $ingredientNew->setName('Veal');
         $ingredientNew->setIngredientID($manager->getReference('AppBundle:Ingredient', 2));
-        $ingredientNew->setLanguageID($manager->getReference('AppBundle:Language', 1));
         $ingredientNew->setMaster(0);
+        $ingredientNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($ingredientNew);
         $manager->flush();
@@ -307,8 +314,8 @@ class LoadUserData implements FixtureInterface
         $ingredientNew = new IngredientName();
         $ingredientNew->setName('Chicken Wings');
         $ingredientNew->setIngredientID($manager->getReference('AppBundle:Ingredient', 3));
-        $ingredientNew->setLanguageID($manager->getReference('AppBundle:Language', 1));
         $ingredientNew->setMaster(1);
+        $ingredientNew->setLanguageCode($manager->getReference('AppBundle:Language', 'en'));
 
         $manager->persist($ingredientNew);
         $manager->flush();

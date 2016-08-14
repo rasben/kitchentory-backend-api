@@ -24,7 +24,7 @@ class Ingredient
     /**
      * @var boolean
      *
-     * @ORM\Column(name="Global", type="boolean", nullable=false, options={"default":0})
+     * @ORM\Column(name="global", type="boolean", nullable=false, options={"default":0})
      */
     private $global;
 

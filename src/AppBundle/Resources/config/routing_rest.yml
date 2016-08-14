@@ -17,3 +17,8 @@ languages :
   type: rest
   resource:     "AppBundle:LanguageRest"
   name_prefix:  api_
+
+amounts :
+  type: rest
+  resource:     "AppBundle:AmountRest"
+  name_prefix:  api_
